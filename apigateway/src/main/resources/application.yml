@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-route
+          uri: ${USER_ROUTE_URI:http://localhost:8081}
+          predicates:
+            - Path=/getUser/**
+          filters:
+            - PrefixPath=/gateway/user
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+        - id: order-route
+          uri: ${ORDER_ROUTE_URI:http://localhost:8082}
+          predicates:
+            - Path=/order/getOrder/**
+          filters:
+            - PrefixPath=/gateway
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
