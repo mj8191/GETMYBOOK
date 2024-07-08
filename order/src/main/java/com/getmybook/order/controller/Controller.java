@@ -9,7 +9,12 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/gateway/order")
 public class Controller {
+@GetMapping("/getOrder")
 
+    public  String getOrder(){
+    return "order";
+}
 
 }

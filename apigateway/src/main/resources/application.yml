@@ -1,14 +1,22 @@
 spring:
+  main:
+    web-application-type: reactive
+  jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: create-drop
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/getmybook
+    username: root
+    password: password
+
+
   cloud:
     gateway:
       routes:
-        - id: user-route
-          uri: ${USER_ROUTE_URI:http://localhost:8081}
-          predicates:
-            - Path=/getUser/**
-          filters:
-            - PrefixPath=/gateway/user
-            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: order-route
           uri: ${ORDER_ROUTE_URI:http://localhost:8082}
           predicates:
@@ -16,6 +24,21 @@ spring:
           filters:
             - PrefixPath=/gateway
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+        - id: user-route
+          uri: ${USER_ROUTE_URI:http://localhost:8083}
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+        - id: book-route
+          uri: ${BOOK_ROUTE_URI:http://localhost:8084}
+          predicates:
+            - Path=/book/**
+          filters:
+            - AuthenticationFilter
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+
 management:
   endpoints:
     web:
