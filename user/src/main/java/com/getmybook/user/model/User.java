@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class User   {
   @JsonProperty("firstName")
   private String firstName = null;
@@ -33,7 +33,7 @@ public class User   {
 
   @JsonProperty("userName")
   @Column(name = "user_name")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   private String userName = null;
 

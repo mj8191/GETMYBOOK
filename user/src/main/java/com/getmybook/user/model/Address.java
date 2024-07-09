@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 @Data
 public class Address   {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty("id")
     @Column(name = "id")
     private Integer id = null;
