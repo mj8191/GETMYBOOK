@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Entity
 @Data
+@Table(name = "user")
 public class User   {
   @JsonProperty("firstName")
   private String firstName = null;
