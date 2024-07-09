@@ -34,7 +34,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private EmailTestRepository emailDao;
+    private EmailDao emailDao;
 
     @Autowired
     private EmailService emailService;
@@ -45,14 +45,12 @@ public class AuthController {
     }
     @PostMapping("/verifyOtp")
     public Boolean addNewUser(@RequestBody EmailOtpRequest request) {
-        Optional<Email> email1 = emailDao.findById(request.getUserName());
-        if(email1.isPresent()){
+        String email1 = emailDao.findCode(request.getUserName());
 
-            return request.getOtp().equals( email1.get().getOtp());
 
-        } else {
-            return false;
-        }
+            return request.getOtp().equals( email1);
+
+
     }
 
     @GetMapping("/getOtp")
@@ -61,18 +59,13 @@ public class AuthController {
     }
     @GetMapping("/verifyEmail")
     public Boolean verifyEmail(@RequestParam String email,@RequestParam String otp) {
-        System.out.println("verify");
-        Optional<Email> email1 = emailDao.findById(email);
-        if(email1.isPresent()){
-            System.out.println(email1.get().getOtp());
-            System.out.println(otp);
-            System.out.println(email);
-       return otp.equals( email1.get().getOtp());
 
-        } else {
-            return false;
-        }
+        String code = emailDao.findCode(email);
+
+
+        return otp.equals( code);
     }
+
 
     @GetMapping("/getUser")
     public User addNewUser(@RequestParam String userName) {

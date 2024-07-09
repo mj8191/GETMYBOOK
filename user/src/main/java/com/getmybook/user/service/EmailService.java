@@ -20,7 +20,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
     @Autowired
-    private EmailTestRepository emailDao;
+    private EmailDao emailDao;
     @Autowired
     private UserRapository userRapository;
 
@@ -36,18 +36,11 @@ public class EmailService {
         if(userRapository.findById(email).isPresent()){
             return "Already registered, use a different email";
         }
-       if(emailDao.findById(email).isPresent()){
-           email1 = emailDao.findById(email).get();
-           email1.setOtp(otp);
-           emailDao.save(email1);
-       }else {
-           email1.setEmail(email);
-           email1.setOtp(otp);
-           emailDao.save(email1);
-       }
         sendVerificationEmail(email,otp);
-        System.out.println(emailDao.findById(email));
-        return email;
+        emailDao.save(email,otp);
+
+
+        return otp;
     }
 
 
