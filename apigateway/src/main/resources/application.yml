@@ -25,14 +25,14 @@ spring:
             - PrefixPath=/gateway
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: user-route
-          uri: ${USER_ROUTE_URI:http://localhost:8083}
+          uri: ${USER_ROUTE_URI:https://getmybook-4.onrender.com}
           predicates:
             - Path=/auth/**
           filters:
             - AuthenticationFilter
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: book-route
-          uri: ${BOOK_ROUTE_URI:http://localhost:8084}
+          uri: ${BOOK_ROUTE_URI:https://getmybook-5.onrender.com}
           predicates:
             - Path=/book/**
           filters:
