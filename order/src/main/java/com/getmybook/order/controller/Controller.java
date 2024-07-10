@@ -22,10 +22,28 @@ public class Controller {
         order.setSellerId(createRequest.getSellerId());
         order.setBuyerId(createRequest.getBuyerId());
         order.setImage(createRequest.getImage());
+        order.setStatus("ordered");
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Order order1 = orderRepository.save(order);
         System.out.println(order1);
         return order1;
+
+    }
+    @GetMapping("/updateStatus")
+    public void updateOrderStatus(@PathVariable Integer id,@PathVariable String status){
+        Optional<Order> order = orderRepository.findById(id);
+        if(order.isPresent()){
+        Order order1 = new Order();
+            order1.setId(order.get().getId());
+            order1.setBookId(order.get().getBookId());
+            order1.setSellerId(order.get().getSellerId());
+            order1.setBuyerId(order.get().getBuyerId());
+            order1.setImage(order.get().getImage());
+            order1.setStatus(status);
+            order1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+            orderRepository.save(order1);
+        }
+
 
     }
     @GetMapping("/getAll")
