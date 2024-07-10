@@ -32,7 +32,6 @@ public class EmailService {
 
     public String getOtp(String email) {
         String otp = generateOTP();
-        Email email1 = new Email();
         if(userRapository.findById(email).isPresent()){
             return "Already registered, use a different email";
         }
