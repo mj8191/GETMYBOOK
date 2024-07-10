@@ -18,11 +18,11 @@ spring:
     gateway:
       routes:
         - id: order-route
-          uri: ${ORDER_ROUTE_URI:http://localhost:8082}
+          uri: ${ORDER_ROUTE_URI:https://getmybook-7.onrender.com}
           predicates:
-            - Path=/order/getOrder/**
+            - Path=/order/**
           filters:
-            - PrefixPath=/gateway
+            - AuthenticationFilter
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: user-route
           uri: ${USER_ROUTE_URI:https://getmybook-4.onrender.com}
