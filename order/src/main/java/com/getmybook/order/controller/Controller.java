@@ -83,4 +83,9 @@ public class Controller {
         orderRepository.deleteAll();
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+
 }
