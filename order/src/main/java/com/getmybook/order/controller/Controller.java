@@ -21,6 +21,7 @@ public class Controller {
         order.setBookId(createRequest.getBookId());
         order.setSellerId(createRequest.getSellerId());
         order.setBuyerId(createRequest.getBuyerId());
+        order.setImage(createRequest.getImage());
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Order order1 = orderRepository.save(order);
         System.out.println(order1);

@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 public class CreateRequest{
     private  String sellerId;
     private String buyerId;
+    private String image;
     private String bookId;
 }
