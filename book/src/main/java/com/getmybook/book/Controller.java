@@ -42,4 +42,9 @@ public class Controller {
         bookRepository.deleteAll();
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+
 }
