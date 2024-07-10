@@ -23,7 +23,7 @@ spring:
             - Path=/order/**
           filters:
             - AuthenticationFilter
-            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Order Service
         - id: user-route
           uri: ${USER_ROUTE_URI:https://getmybook-4.onrender.com}
           predicates:
