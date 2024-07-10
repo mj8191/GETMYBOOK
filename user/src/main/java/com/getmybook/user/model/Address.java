@@ -22,6 +22,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Entity
 @Data
+@Table(name = "Address")
 public class Address   {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

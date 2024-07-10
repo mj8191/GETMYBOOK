@@ -33,7 +33,6 @@ public class User   {
 
   @JsonProperty("userName")
   @Column(name = "user_name")
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   private String userName = null;
 
