@@ -39,7 +39,7 @@ public class EmailService {
         emailDao.save(email,otp);
 
 
-        return otp;
+        return email;
     }
 
 
