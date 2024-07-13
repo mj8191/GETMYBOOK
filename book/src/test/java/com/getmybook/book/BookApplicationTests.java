@@ -1,10 +1,10 @@
-package com.getmybook.order;
+package com.getmybook.book;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OrderApplicationTests {
+class BookApplicationTests {
 
 	@Test
 	void contextLoads() {

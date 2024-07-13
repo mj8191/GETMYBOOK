@@ -1,4 +1,4 @@
-package com.getmybook.order;
+package com.getmybook.book;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Table(name = "book")
-public class Order{
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
     private  String sellerId;
-    private String buyerId;
-    private String bookId;
+    private String bookName;
+    private String author;
     private String image;
-    private String status;
+
+    private String rentPrice;
     private String updatedOn;
 
 }
-
