@@ -21,9 +21,7 @@ public class Controller {
         book.setSellerId(createRequest.getSellerId());
         book.setImage(createRequest.getImage());
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
-        Book book1 = bookRepository.save(book);
-        System.out.println(book1);
-        return book1;
+        return bookRepository.save(book);
 
     }
     @GetMapping("/getAllBySellerId")
