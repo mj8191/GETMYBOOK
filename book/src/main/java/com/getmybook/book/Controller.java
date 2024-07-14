@@ -35,6 +35,17 @@ public class Controller {
 
     }
 
+    @GetMapping("/getAllBook")
+    public List getAllBook(){
+        List<Book> list = bookRepository.findAll();
+        if(list.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        return list;
+
+
+    }
+
     @GetMapping("/deleteAll")
     public  void deleteAll(){
         bookRepository.deleteAll();
