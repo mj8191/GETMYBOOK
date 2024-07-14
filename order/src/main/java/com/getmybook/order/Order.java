@@ -17,6 +17,7 @@ public class Order{
     private Integer id;
     private  String sellerId;
     private String buyerId;
+    private String agentId;
     private String bookId;
     private String image;
     private String status;

@@ -36,6 +36,7 @@ public class Controller {
         Order order1 = new Order();
             order1.setId(order.get().getId());
             order1.setBookId(order.get().getBookId());
+            order1.setAgentId('mj.eng8191@gmail.com');
             order1.setSellerId(order.get().getSellerId());
             order1.setBuyerId(order.get().getBuyerId());
             order1.setImage(order.get().getImage());
@@ -69,6 +70,17 @@ public class Controller {
     @GetMapping("/getAllByBuyerId")
     public List getOrderByBuyerId(@RequestParam String buyerId){
         List<Order> list = orderRepository.getAllByBuyerId(buyerId);
+        if(list.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        return list;
+
+
+    }
+
+    @GetMapping("/getAllByAgentId")
+    public List getOrderByAgentId(@RequestParam String agentId){
+        List<Order> list = orderRepository.getAllByAgentId(agentId);
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
