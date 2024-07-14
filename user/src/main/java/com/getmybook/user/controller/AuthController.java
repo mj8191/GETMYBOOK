@@ -3,16 +3,14 @@ package com.getmybook.user.controller;
 import com.getmybook.user.dao.AddressRepo;
 import com.getmybook.user.dao.EmailTestRepository;
 import com.getmybook.user.dao.UserRapository;
-import com.getmybook.user.dto.AuthRequest;
-import com.getmybook.user.dto.EmailOtpRequest;
-import com.getmybook.user.dto.RegisterRequest;
-import com.getmybook.user.dto.UserDetail;
+import com.getmybook.user.dto.*;
 import com.getmybook.user.model.Email;
 import com.getmybook.user.model.User;
 import com.getmybook.user.redisRepo.EmailDao;
 import com.getmybook.user.service.AuthService;
 import com.getmybook.user.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.OrderUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -72,6 +70,19 @@ public class AuthController {
 
         Optional<User> user = repository.findById(userName);
         return user.orElse(null);
+    }
+
+    @GetMapping("/getOderUserDetail")
+    public OderUserDetail getOderUserDetail(@RequestParam String sellerName,@RequestParam String buyerName) {
+
+        Optional<User> seller = repository.findById(sellerName);
+        Optional<User> buyer = repository.findById(buyerName);
+        OderUserDetail oderUserDetail = new OderUserDetail();
+        if(seller.isPresent()&&buyer.isPresent()) {
+            oderUserDetail.setSeller(seller.get());
+            oderUserDetail.setBuyer(buyer.get());
+        }
+        return oderUserDetail;
     }
 
     @PostMapping("/login")
