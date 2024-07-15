@@ -1,17 +1,6 @@
 spring:
   main:
     web-application-type: reactive
-  jpa:
-  show-sql: true
-  hibernate:
-    ddl-auto: create-drop
-  properties:
-    hibernate:
-      dialect: org.hibernate.dialect.MySQL8Dialect
-  datasource:
-    url: jdbc:mysql://localhost:3306/getmybook
-    username: root
-    password: password
 
 
   cloud:
@@ -23,7 +12,7 @@ spring:
             - Path=/order/**
           filters:
             - AuthenticationFilter
-            - AddResponseHeader=X-Powered-By, GETMYBOOK Order Service
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: user-route
           uri: ${USER_ROUTE_URI:https://getmybook-4.onrender.com}
           predicates:
