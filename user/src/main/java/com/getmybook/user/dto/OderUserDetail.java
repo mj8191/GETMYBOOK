@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class OderUserDetail {
 
-    User seller;
-    User buyer;
+    AddressDto seller;
+    AddressDto buyer;
 }

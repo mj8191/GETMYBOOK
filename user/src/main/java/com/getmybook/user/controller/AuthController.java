@@ -4,6 +4,7 @@ import com.getmybook.user.dao.AddressRepo;
 import com.getmybook.user.dao.EmailTestRepository;
 import com.getmybook.user.dao.UserRapository;
 import com.getmybook.user.dto.*;
+import com.getmybook.user.model.Address;
 import com.getmybook.user.model.Email;
 import com.getmybook.user.model.User;
 import com.getmybook.user.redisRepo.EmailDao;
@@ -79,8 +80,21 @@ public class AuthController {
         Optional<User> buyer = repository.findById(buyerName);
         OderUserDetail oderUserDetail = new OderUserDetail();
         if(seller.isPresent()&&buyer.isPresent()) {
-            oderUserDetail.setSeller(seller.get());
-            oderUserDetail.setBuyer(buyer.get());
+            AddressDto seller1 = new AddressDto();
+            seller1.setFirstName(seller.get().getFirstName());
+            seller1.setLastName(seller.get().getLastName());
+            seller1.setContact(seller.get().getContact());
+            Address sellerAddress = addressRepo.getAddressByUserName(sellerName);
+
+            seller1.setAddress(sellerAddress);
+            AddressDto buyer1 = new AddressDto();
+            buyer1.setFirstName(buyer.get().getFirstName());
+            buyer1.setLastName(buyer.get().getLastName());
+            buyer1.setContact(buyer.get().getContact());
+            Address buyerAddress = addressRepo.getAddressByUserName(buyerName);
+            buyer1.setAddress(buyerAddress);
+            oderUserDetail.setSeller(seller1);
+            oderUserDetail.setBuyer(buyer1);
         }
         return oderUserDetail;
     }

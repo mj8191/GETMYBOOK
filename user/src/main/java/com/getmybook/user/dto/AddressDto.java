@@ -1,5 +1,6 @@
 package com.getmybook.user.dto;
 
+import com.getmybook.user.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Data
 public class AddressDto {
-    private String userName;
-    private String line1;
-    private String line2;
-    private String dist;
-    private String state;
-    private Integer pin;
+    private String firstName;
+    private String lastName;
+    private String contact;
+    private Address address;
 }
