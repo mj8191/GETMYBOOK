@@ -31,7 +31,7 @@ public class Controller {
 
     }
     @GetMapping("/updateStatus")
-    public void updateOrderStatus(@PathVariable Integer id,@PathVariable String status){
+    public void updateOrderStatus(@RequestParam Integer id,@RequestParam String status){
         Optional<Order> order = orderRepository.findById(id);
         if(order.isPresent()){
         Order order1 = new Order();
