@@ -1,0 +1,13 @@
+{
+  "name": "GetMyBookAgent",
+  "displayName": "GetMyBookAgent",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "ecd65a12-0699-4870-a138-382096c8ccf1"
+      }
+    },
+    "owner": "mj.eng8191",
+    "slug": "book-agent"
+  }
+}
