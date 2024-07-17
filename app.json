@@ -1,0 +1,13 @@
+{
+  "name": "GetMyBookBuyer",
+  "displayName": "GetMyBookBuyer",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "35c24e5b-7904-4412-9194-5b1c3c9daa69"
+      }
+    },
+    "owner": "mj.eng8191",
+    "slug": "book-buyer"
+  }
+}
