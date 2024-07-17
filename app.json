@@ -1,0 +1,19 @@
+{
+  "name": "GetMyBookSeller",
+  "displayName": "GetMyBookSeller",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "f2a54304-a317-4f93-9415-d0cd463753ce"
+      }
+    },
+    "owner": "mj.eng8191",
+    "slug": "book-seller",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/f2a54304-a317-4f93-9415-d0cd463753ce"
+    },
+    "android": {},
+    "ios": {}
+  }
+}
