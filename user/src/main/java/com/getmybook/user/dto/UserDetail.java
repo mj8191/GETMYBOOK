@@ -16,6 +16,8 @@ public class UserDetail {
     private  String lastName;
     private String contact;
     private String token;
-    private Address address;
+    private String address;
+    private BigDecimal altitude;
+    private BigDecimal latitude;
 
 }

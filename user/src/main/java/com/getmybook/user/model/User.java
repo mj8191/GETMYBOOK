@@ -5,7 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +22,7 @@ import javax.validation.constraints.*;
  * User
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-06-26T10:10:41.543404103Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-07-25T19:36:05.684144195Z[GMT]")
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,6 +46,15 @@ public class User   {
 
   @JsonProperty("contact")
   private String contact = null;
+
+  @JsonProperty("address")
+  private String address = null;
+
+  @JsonProperty("altitude")
+  private BigDecimal altitude = null;
+
+  @JsonProperty("latitude")
+  private BigDecimal latitude = null;
 
   /**
    * Gets or Sets role
@@ -187,6 +201,68 @@ public class User   {
     this.contact = contact;
   }
 
+  public User address(String address) {
+    this.address = address;
+    return this;
+  }
+
+  /**
+   * Get address
+   * @return address
+   **/
+  @Schema(description = "")
+  @NotNull
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public User altitude(BigDecimal altitude) {
+    this.altitude = altitude;
+    return this;
+  }
+
+  /**
+   * Get altitude
+   * @return altitude
+   **/
+  @Schema(description = "")
+  @NotNull
+
+  @Valid
+  public BigDecimal getAltitude() {
+    return altitude;
+  }
+
+  public void setAltitude(BigDecimal altitude) {
+    this.altitude = altitude;
+  }
+
+  public User latitude(BigDecimal latitude) {
+    this.latitude = latitude;
+    return this;
+  }
+
+  /**
+   * Get latitude
+   * @return latitude
+   **/
+  @Schema(description = "")
+  @NotNull
+
+  @Valid
+  public BigDecimal getLatitude() {
+    return latitude;
+  }
+
+  public void setLatitude(BigDecimal latitude) {
+    this.latitude = latitude;
+  }
+
   public User role(RoleEnum role) {
     this.role = role;
     return this;
@@ -302,6 +378,9 @@ public class User   {
             Objects.equals(this.userName, user.userName) &&
             Objects.equals(this.password, user.password) &&
             Objects.equals(this.contact, user.contact) &&
+            Objects.equals(this.address, user.address) &&
+            Objects.equals(this.altitude, user.altitude) &&
+            Objects.equals(this.latitude, user.latitude) &&
             Objects.equals(this.role, user.role) &&
             Objects.equals(this.createdOn, user.createdOn) &&
             Objects.equals(this.updatedOn, user.updatedOn) &&
@@ -311,7 +390,7 @@ public class User   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, userName, password, contact, role, createdOn, updatedOn, createdBy, updatedBy);
+    return Objects.hash(firstName, lastName, userName, password, contact, address, altitude, latitude, role, createdOn, updatedOn, createdBy, updatedBy);
   }
 
   @Override
@@ -324,6 +403,9 @@ public class User   {
     sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    altitude: ").append(toIndentedString(altitude)).append("\n");
+    sb.append("    latitude: ").append(toIndentedString(latitude)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    createdOn: ").append(toIndentedString(createdOn)).append("\n");
     sb.append("    updatedOn: ").append(toIndentedString(updatedOn)).append("\n");

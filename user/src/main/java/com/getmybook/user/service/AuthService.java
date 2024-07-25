@@ -36,23 +36,19 @@ public class AuthService {
         user.setFirstName(credential.getFirstName());
         user.setLastName(credential.getLastName());
         user.setContact(credential.getContact());
+        user.setAddress(credential.getAddress());
+        user.setAltitude(credential.getAltitude());
+        user.setLatitude(credential.getLatitude());
         User user1 = repository.save(user);
-        Address address = new Address();
-        address.setAddressType("default");
-        address.setLine1(credential.getLine1());
-        address.setLine2(credential.getLine2());
-        address.setPin(credential.getPin());
-        address.setUserName(credential.getUserName());
 
-        address.setDist(credential.getDist());
-        address.setState(credential.getState());
         UserDetail userDetail= new UserDetail();
         userDetail.setUserName(user1.getUserName());
         userDetail.setFirstName(user1.getFirstName());
         userDetail.setLastName(user1.getLastName());
         userDetail.setContact(user1.getContact());
-        Address address1 = addressRepo.save(address);
-        userDetail.setAddress(address1);
+        userDetail.setAddress(user1.getAddress());
+        userDetail.setAltitude(user1.getAltitude());
+        userDetail.setLatitude(user1.getLatitude());
         userDetail.setToken(generateToken(user1.getUserName()));
         return userDetail;
     }
@@ -64,8 +60,9 @@ public class AuthService {
             userDetail.setFirstName(user1.get().getFirstName());
             userDetail.setLastName(user1.get().getLastName());
             userDetail.setContact(user1.get().getContact());
-            Address address1 = addressRepo.getAddressByUserName(userName);
-            userDetail.setAddress(address1);
+            userDetail.setAddress(user1.get().getAddress());
+            userDetail.setAltitude(user1.get().getAltitude());
+            userDetail.setLatitude(user1.get().getLatitude());
             userDetail.setToken(generateToken(user1.get().getUserName()));
             return userDetail;
 

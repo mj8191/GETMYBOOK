@@ -17,10 +17,8 @@ public class RegisterRequest {
     private String firstName;
     private  String lastName;
     private String contact;
-    private String line1;
-    private String line2;
-    private String dist;
-    private String state;
-    private Integer pin;
+    private String address;
+    private BigDecimal altitude;
+    private BigDecimal latitude;
 
 }

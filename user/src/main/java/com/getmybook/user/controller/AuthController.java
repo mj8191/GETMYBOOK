@@ -84,15 +84,17 @@ public class AuthController {
             seller1.setFirstName(seller.get().getFirstName());
             seller1.setLastName(seller.get().getLastName());
             seller1.setContact(seller.get().getContact());
-            Address sellerAddress = addressRepo.getAddressByUserName(sellerName);
 
-            seller1.setAddress(sellerAddress);
+            seller1.setAddress(seller.get().getAddress());
+            seller1.setAltitude(seller.get().getAltitude());
+            seller1.setLatitude(seller.get().getLatitude());
             AddressDto buyer1 = new AddressDto();
             buyer1.setFirstName(buyer.get().getFirstName());
             buyer1.setLastName(buyer.get().getLastName());
             buyer1.setContact(buyer.get().getContact());
-            Address buyerAddress = addressRepo.getAddressByUserName(buyerName);
-            buyer1.setAddress(buyerAddress);
+            buyer1.setAddress(buyer.get().getAddress());
+            buyer1.setAltitude(buyer.get().getAltitude());
+            buyer1.setLatitude(buyer.get().getLatitude());
             oderUserDetail.setSeller(seller1);
             oderUserDetail.setBuyer(buyer1);
         }

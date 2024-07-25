@@ -14,5 +14,7 @@ public class AddressDto {
     private String firstName;
     private String lastName;
     private String contact;
-    private Address address;
+    private String address;
+    private BigDecimal altitude;
+    private BigDecimal latitude;
 }
