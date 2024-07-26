@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +38,8 @@ public class AuthService {
         user.setLastName(credential.getLastName());
         user.setContact(credential.getContact());
         user.setAddress(credential.getAddress());
-        user.setAltitude(credential.getAltitude());
-        user.setLatitude(credential.getLatitude());
+        user.setAltitude(new BigDecimal(credential.getAltitude()));
+        user.setLatitude(new BigDecimal(credential.getLatitude()));
         User user1 = repository.save(user);
 
         UserDetail userDetail= new UserDetail();

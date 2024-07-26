@@ -18,7 +18,7 @@ public class RegisterRequest {
     private  String lastName;
     private String contact;
     private String address;
-    private BigDecimal altitude;
-    private BigDecimal latitude;
+    private String altitude;
+    private String latitude;
 
 }
