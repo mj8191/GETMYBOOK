@@ -16,7 +16,10 @@ public class RouteValidator {
             "/auth/verifyEmail",
             "/auth/login",
             "/book/test",
-            "/order/test"
+            "/order/test",
+            "/auth/updatePassword",
+            "/auth/getOtp1"
+
     );
 
     public Predicate<ServerHttpRequest> isSecured =
