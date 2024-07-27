@@ -53,8 +53,10 @@ public class AuthService {
         userDetail.setToken(generateToken(user1.getUserName()));
         return userDetail;
     }
+
     public UserDetail login(String userName){
         Optional<User> user1 = repository.findAllByUserName(userName);
+
         UserDetail userDetail= new UserDetail();
 
             userDetail.setUserName(user1.get().getUserName());
@@ -66,6 +68,34 @@ public class AuthService {
             userDetail.setLatitude(user1.get().getLatitude());
             userDetail.setToken(generateToken(user1.get().getUserName()));
             return userDetail;
+
+
+    }
+    public UserDetail updatePassword(String userName,String password){
+        Optional<User> user1 = repository.findAllByUserName(userName);
+        User user = new User();
+        user.setUserName(user1.get().getUserName());
+        user.setFirstName(user1.get().getFirstName());
+        user.setLastName(user1.get().getLastName());
+        user.setPassword(passwordEncoder.encode(password));
+        user.setContact(user1.get().getContact());
+        user.setAddress(user1.get().getAddress());
+        user.setAltitude(user1.get().getAltitude());
+        user.setLatitude(user1.get().getLatitude());
+        repository.save(user);
+
+
+        UserDetail userDetail= new UserDetail();
+
+        userDetail.setUserName(user1.get().getUserName());
+        userDetail.setFirstName(user1.get().getFirstName());
+        userDetail.setLastName(user1.get().getLastName());
+        userDetail.setContact(user1.get().getContact());
+        userDetail.setAddress(user1.get().getAddress());
+        userDetail.setAltitude(user1.get().getAltitude());
+        userDetail.setLatitude(user1.get().getLatitude());
+        userDetail.setToken(generateToken(user1.get().getUserName()));
+        return userDetail;
 
 
     }

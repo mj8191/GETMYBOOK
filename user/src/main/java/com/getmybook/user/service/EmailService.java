@@ -41,6 +41,19 @@ public class EmailService {
 
         return email;
     }
+    public String getOtp1(String email) {
+        String otp = generateOTP();
+        if(userRapository.findById(email).isPresent()){
+            sendVerificationEmail(email,otp);
+            emailDao.save(email,otp);
+
+
+            return email;
+
+        }
+        return "Email id is not registered";
+
+    }
 
 
     private String generateOTP(){

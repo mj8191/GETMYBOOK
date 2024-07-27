@@ -42,6 +42,11 @@ public class AuthController {
     public UserDetail addNewUser(@RequestBody RegisterRequest user) {
         return service.saveUser(user);
     }
+
+    @GetMapping("/updatePassword")
+    public UserDetail updatePassword(@RequestParam String userName,@RequestParam String password) {
+        return service.updatePassword(userName,password);
+    }
     @PostMapping("/verifyOtp")
     public Boolean addNewUser(@RequestBody EmailOtpRequest request) {
         String email1 = emailDao.findCode(request.getUserName());
@@ -55,6 +60,11 @@ public class AuthController {
     @GetMapping("/getOtp")
     public String getOtp(@RequestParam String email) {
         return emailService.getOtp(email);
+    }
+
+    @GetMapping("/getOtp1")
+    public String getOtp1(@RequestParam String email) {
+        return emailService.getOtp1(email);
     }
     @GetMapping("/verifyEmail")
     public Boolean verifyEmail(@RequestParam String email,@RequestParam String otp) {
