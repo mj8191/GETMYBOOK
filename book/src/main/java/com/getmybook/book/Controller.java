@@ -36,6 +36,9 @@ public class Controller {
     }
     @GetMapping("/search")
     public List search(@RequestParam String search){
+        if(search.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
         List<Book> list = bookRepository.search(search);
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
