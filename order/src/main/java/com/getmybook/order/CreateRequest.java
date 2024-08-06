@@ -11,4 +11,5 @@ public class CreateRequest{
     private String buyerId;
     private String image;
     private String bookId;
+    private String bookName;
 }

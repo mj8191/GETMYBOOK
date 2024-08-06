@@ -21,6 +21,7 @@ public class Controller {
         order.setBookId(createRequest.getBookId());
         order.setSellerId(createRequest.getSellerId());
         order.setBuyerId(createRequest.getBuyerId());
+        order.setBookName(createRequest.getBookName());
         order.setImage(createRequest.getImage());
         order.setAgentId("mj.eng8191@gmail.com");
         order.setStatus("ordered");
@@ -41,6 +42,7 @@ public class Controller {
             order1.setSellerId(order.get().getSellerId());
             order1.setBuyerId(order.get().getBuyerId());
             order1.setImage(order.get().getImage());
+            order1.setBookName(order.get().getBookName());
             order1.setStatus(status);
             order1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
             orderRepository.save(order1);

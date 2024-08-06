@@ -21,6 +21,7 @@ public class Order{
     private String bookId;
     private String image;
     private String status;
+    private String bookName;
     private String updatedOn;
 
 }
