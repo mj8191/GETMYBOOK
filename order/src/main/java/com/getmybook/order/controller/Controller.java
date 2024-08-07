@@ -32,8 +32,9 @@ public class Controller {
 
     }
     @GetMapping("/updateStatus")
-    public void updateOrderStatus(@RequestParam Integer id,@RequestParam String status){
+    public Order updateOrderStatus(@RequestParam Integer id,@RequestParam String status){
         Optional<Order> order = orderRepository.findById(id);
+        Order order2 = new Order();
         if(order.isPresent()){
         Order order1 = new Order();
             order1.setId(order.get().getId());
@@ -45,9 +46,9 @@ public class Controller {
             order1.setBookName(order.get().getBookName());
             order1.setStatus(status);
             order1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
-            orderRepository.save(order1);
+         order2 =  orderRepository.save(order1);
         }
-
+        return order2;
 
     }
     @GetMapping("/getAll")
