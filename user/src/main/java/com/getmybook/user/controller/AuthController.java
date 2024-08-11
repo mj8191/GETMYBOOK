@@ -62,6 +62,11 @@ public class AuthController {
         return emailService.getOtp(email);
     }
 
+    @GetMapping("/delete")
+    public void delete(@RequestParam String email) {
+         repository.deleteById(email);
+    }
+
     @GetMapping("/getOtp1")
     public String getOtp1(@RequestParam String email) {
         return emailService.getOtp1(email);
