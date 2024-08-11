@@ -42,7 +42,7 @@ public class AuthConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth->auth.requestMatchers("/auth/deleteAddress","/auth/deleteUser","/auth/register", "/auth/token", "/auth/validate","/auth/getOtp1","/auth/getOtp","/auth/verifyEmail","/auth/login","/auth/updatePassword").permitAll()
+                .authorizeHttpRequests(auth->auth.requestMatchers("/auth/deleteAddress","/auth/deleteUser","/auth/register", "/auth/token", "/auth/validate","/auth/getOtp1","/auth/getOtp","/auth/verifyEmail","/auth/login","/auth/updatePassword","/auth/delete").permitAll()
                         .anyRequest().authenticated()).sessionManagement((session) -> session
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         ).authenticationProvider(authenticationProvider())
