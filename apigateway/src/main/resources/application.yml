@@ -1,0 +1,40 @@
+spring:
+  main:
+    web-application-type: reactive
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: order-route
+          uri: ${ORDER_ROUTE_URI:http://localhost:8085}
+          predicates:
+            - Path=/order/**
+          filters:
+            - AuthenticationFilter
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+        - id: user-route
+          uri: ${USER_ROUTE_URI:http://localhost:8083}
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+        - id: book-route
+          uri: ${BOOK_ROUTE_URI:http://localhost:8084}
+          predicates:
+            - Path=/book/**
+          filters:
+            - AuthenticationFilter
+            - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
