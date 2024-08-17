@@ -7,21 +7,21 @@ spring:
     gateway:
       routes:
         - id: order-route
-          uri: ${ORDER_ROUTE_URI:https://getmybook-7.onrender.com}
+          uri: ${ORDER_ROUTE_URI:http://localhost:8084}
           predicates:
             - Path=/order/**
           filters:
             - AuthenticationFilter
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: user-route
-          uri: ${USER_ROUTE_URI:https://getmybook-4.onrender.com}
+          uri: ${USER_ROUTE_URI:http://localhost:8083}
           predicates:
             - Path=/auth/**
           filters:
             - AuthenticationFilter
             - AddResponseHeader=X-Powered-By, GETMYBOOK Gateway Service
         - id: book-route
-          uri: ${BOOK_ROUTE_URI:https://getmybook-5.onrender.com}
+          uri: ${BOOK_ROUTE_URI:http://localhost:8085}
           predicates:
             - Path=/book/**
           filters:
