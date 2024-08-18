@@ -15,6 +15,7 @@ public class Controller {
     public Book saveBook(@RequestBody CreateRequest createRequest){
         System.out.println(createRequest);
         Book book = new Book();
+        book.setStatus(createRequest.getStatus());
         book.setBookName(createRequest.getBookName());
         book.setAuthor(createRequest.getAuthor());
         book.setRentPrice(createRequest.getRentPrice());

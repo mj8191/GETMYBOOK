@@ -19,6 +19,7 @@ public class Book {
     private String bookName;
     private String author;
     private String image;
+    private  String status;
 
     private String rentPrice;
     private String updatedOn;
