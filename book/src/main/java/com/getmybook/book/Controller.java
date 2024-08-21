@@ -10,6 +10,8 @@ import java.util.*;
 @RequestMapping(value = "/book")
 public class Controller {
     @Autowired
+    private ModelRepo modelRepo;
+    @Autowired
     private BookRepository bookRepository;
     @PostMapping("/save")
     public Book saveBook(@RequestBody CreateRequest createRequest){
@@ -23,6 +25,17 @@ public class Controller {
         book.setImage(createRequest.getImage());
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         return bookRepository.save(book);
+
+    }
+
+    @PostMapping("/saveModel")
+    public Model saveModel(@RequestBody ModelCreateRequest createRequest){
+        System.out.println(createRequest);
+        Model model = new Model();
+        model.setTitle(createRequest.getTitle());
+        model.setAuthor(createRequest.getAuthor());
+        model.setImage(createRequest.getImage());
+        return modelRepo.save(model);
 
     }
     @GetMapping("/getAllBySellerId")
@@ -41,6 +54,19 @@ public class Controller {
             return Collections.EMPTY_LIST;
         }
         List<Book> list = bookRepository.search(search);
+        if(list.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        return list;
+
+
+    }
+    @GetMapping("/searchModel")
+    public List searchModel(@RequestParam String search){
+        if(search.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        List<Model> list = modelRepo.search(search);
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
