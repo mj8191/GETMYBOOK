@@ -86,6 +86,17 @@ public class Controller {
 
     }
 
+    @GetMapping("/getModel")
+    public boolean getModel(ModelCreateRequest getModel){
+        Optional<Model> model = modelRepo.findById(getModel.getTitle());
+        if(model.isPresent()){
+            if(model.get().getAuthor().equals(getModel.getAuthor())&&model.get().getImage().equals(getModel.getImage())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @GetMapping("/deleteAll")
     public  void deleteAll(){
         bookRepository.deleteAll();
