@@ -15,7 +15,16 @@ public class Controller {
     private BookRepository bookRepository;
     @PostMapping("/save")
     public Book saveBook(@RequestBody CreateRequest createRequest){
-        System.out.println(createRequest);
+        Optional<Model> model = modelRepo.findByTitleIgnoreCaseAndAuthorIgnoreCaseAndImage(createRequest.getBookName(),createRequest.getAuthor(),createRequest.getImage());
+        if(model.isPresent()){
+                createRequest.setStatus("Published");
+
+
+        } else {
+
+            createRequest.setStatus("Pending");
+        }
+
         Book book = new Book();
         book.setStatus(createRequest.getStatus());
         book.setBookName(createRequest.getBookName());
@@ -86,15 +95,17 @@ public class Controller {
 
     }
 
-    @GetMapping("/getModel")
-    public boolean getModel(ModelCreateRequest getModel){
-        Optional<Model> model = modelRepo.findById(getModel.getTitle());
-        if(model.isPresent()){
-            if(model.get().getAuthor().equals(getModel.getAuthor())&&model.get().getImage().equals(getModel.getImage())){
-                return true;
-            }
-        }
-        return false;
+    @GetMapping("/updateStatus")
+    public Book getModel(Book createRequest){
+        Book book = (Book) bookRepository.findAllById(Collections.singleton(createRequest.getId()));
+        book.setStatus("Published");
+        Model model1 = new Model();
+        model1.setTitle(createRequest.getBookName());
+        model1.setAuthor(createRequest.getAuthor());
+        model1.setImage(createRequest.getImage());
+        modelRepo.save(model1);
+
+        return bookRepository.save(book);
     }
 
     @GetMapping("/deleteAll")
