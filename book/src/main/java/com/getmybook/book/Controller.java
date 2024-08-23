@@ -95,6 +95,17 @@ public class Controller {
 
     }
 
+    @GetMapping("getAllByStatus")
+    public List getAllByStatus(@RequestParam String status){
+        List<Book> list = bookRepository.getAllByStatus(status);
+        if(list.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+        return list;
+
+
+    }
+
     @GetMapping("/updateStatus")
     public Book getModel(Book createRequest){
         Book book = (Book) bookRepository.findAllById(Collections.singleton(createRequest.getId()));
