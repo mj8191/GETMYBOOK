@@ -20,7 +20,8 @@ public class Order{
     private  String sellerId;
     private String buyerId;
     private String agentId;
-    @OneToMany(mappedBy="Order")
+    @OneToMany
+    @JoinColumn(name = "order_id")
     private Set<Item> items;
 
     private String status;

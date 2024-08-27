@@ -17,7 +17,7 @@ public class Item {
     private String image;
     private Integer rentPrice;
     @ManyToOne
-    @JoinColumn(name="order_id", nullable=false)
+    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
     private Order order;
     private String bookName;
 }
