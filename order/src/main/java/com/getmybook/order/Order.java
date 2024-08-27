@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,15 +15,15 @@ import lombok.NoArgsConstructor;
 public class Order{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "order_id")
+    private Integer orderId;
     private  String sellerId;
     private String buyerId;
     private String agentId;
-    private String bookId;
-    private String image;
+    @OneToMany(mappedBy="Order")
+    private Set<Item> items;
+
     private String status;
-    private String bookName;
     private String updatedOn;
 
 }

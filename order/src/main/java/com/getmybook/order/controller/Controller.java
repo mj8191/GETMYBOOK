@@ -18,11 +18,9 @@ public class Controller {
     public Order saveBook(@RequestBody CreateRequest createRequest){
         System.out.println(createRequest);
         Order order = new Order();
-        order.setBookId(createRequest.getBookId());
         order.setSellerId(createRequest.getSellerId());
         order.setBuyerId(createRequest.getBuyerId());
-        order.setBookName(createRequest.getBookName());
-        order.setImage(createRequest.getImage());
+        order.setItems(createRequest.getItems());
         order.setAgentId("mj.eng8191@gmail.com");
         order.setStatus("ordered");
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
@@ -36,17 +34,13 @@ public class Controller {
         Optional<Order> order = orderRepository.findById(id);
         Order order2 = new Order();
         if(order.isPresent()){
-        Order order1 = new Order();
-            order1.setId(order.get().getId());
-            order1.setBookId(order.get().getBookId());
-            order1.setAgentId(order.get().getAgentId());
-            order1.setSellerId(order.get().getSellerId());
-            order1.setBuyerId(order.get().getBuyerId());
-            order1.setImage(order.get().getImage());
-            order1.setBookName(order.get().getBookName());
-            order1.setStatus(status);
-            order1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
-         order2 =  orderRepository.save(order1);
+            order2.setOrderId(id);
+            order2.setSellerId(order.get().getSellerId());
+            order2.setBuyerId(order.get().getBuyerId());
+            order2.setItems(order.get().getItems());
+            order2.setAgentId("mj.eng8191@gmail.com");
+            order2.setStatus(status);
+            order2.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         }
         return order2;
 

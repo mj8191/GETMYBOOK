@@ -3,13 +3,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class CreateRequest{
     private  String sellerId;
     private String buyerId;
-    private String image;
-    private String bookId;
-    private String bookName;
+    private Set<Item> items;
 }
