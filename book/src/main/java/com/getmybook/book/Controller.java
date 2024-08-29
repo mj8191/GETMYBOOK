@@ -106,8 +106,8 @@ public class Controller {
 
     }
 
-    @GetMapping("/updateStatus")
-    public Book getModel(Book createRequest){
+    @PostMapping("/updateStatus")
+    public Book getModel(@RequestBody Book createRequest){
        Optional<Book> book =  bookRepository.findById(createRequest.getId());
        Book book1 = new Book();
        if(book.isPresent()){
