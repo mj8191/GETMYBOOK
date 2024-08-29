@@ -115,7 +115,7 @@ public class Controller {
         book1.setBookName(book.get().getBookName());
         book1.setAuthor(book.get().getAuthor());
         book1.setImage(book.get().getImage());
-        book1.setId(createRequest.getId());
+        book1.setId(book.get().getId());
         book1.setRentPrice(book.get().getRentPrice());
         book1.setSellerId(book.get().getSellerId());
         book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
