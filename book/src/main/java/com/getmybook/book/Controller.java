@@ -108,15 +108,21 @@ public class Controller {
 
     @GetMapping("/updateStatus")
     public Book getModel(Book createRequest){
-        Book book = (Book) bookRepository.findAllById(Collections.singleton(createRequest.getId()));
-        book.setStatus(createRequest.getStatus());
-        Model model1 = new Model();
-        model1.setTitle(createRequest.getBookName());
-        model1.setAuthor(createRequest.getAuthor());
-        model1.setImage(createRequest.getImage());
-        modelRepo.save(model1);
+       Optional<Book> book =  bookRepository.findById(createRequest.getId());
+       Book book1 = new Book();
+       if(book.isPresent()){
+        book1.setStatus(createRequest.getStatus());
+        book1.setBookName(book.get().getBookName());
+        book1.setAuthor(book.get().getAuthor());
+        book1.setImage(book.get().getImage());
+        book1.setId(createRequest.getId());
+        book1.setRentPrice(book.get().getRentPrice());
+        book1.setSellerId(book.get().getSellerId());
+        book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+           return bookRepository.save(book1);
+        }
+    return book1;
 
-        return bookRepository.save(book);
     }
 
     @GetMapping("/deleteAll")
