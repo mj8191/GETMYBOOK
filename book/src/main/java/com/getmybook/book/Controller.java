@@ -109,7 +109,7 @@ public class Controller {
     @GetMapping("/updateStatus")
     public Book getModel(Book createRequest){
         Book book = (Book) bookRepository.findAllById(Collections.singleton(createRequest.getId()));
-        book.setStatus("Published");
+        book.setStatus(createRequest.getStatus());
         Model model1 = new Model();
         model1.setTitle(createRequest.getBookName());
         model1.setAuthor(createRequest.getAuthor());
