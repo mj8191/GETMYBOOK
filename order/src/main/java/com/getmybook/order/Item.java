@@ -13,11 +13,11 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private String Id;
+    private Integer Id;
     private String image;
     private Integer rentPrice;
-    @ManyToOne
-    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
+    @ManyToOne()
+    @JoinColumn(name = "order_id")
     private Order order;
     private String bookName;
 }

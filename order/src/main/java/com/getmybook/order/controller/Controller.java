@@ -1,8 +1,6 @@
 package com.getmybook.order.controller;
 
-import com.getmybook.order.OrderRepository;
-import com.getmybook.order.Order;
-import com.getmybook.order.CreateRequest;
+import com.getmybook.order.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +12,8 @@ import java.util.*;
 public class Controller {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ItemRepo itemRepo;
     @PostMapping("/save")
     public Order saveBook(@RequestBody CreateRequest createRequest){
         System.out.println(createRequest);
@@ -25,6 +25,15 @@ public class Controller {
         order.setStatus("ordered");
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Order order1 = orderRepository.save(order);
+        Set<Item> items = createRequest.getItems();
+        items.forEach(item ->
+                {
+                    item.setOrder(order1);
+                    itemRepo.save(item);
+                }
+
+                );
+        order1.setItems(items);
         System.out.println(order1);
         return order1;
 
@@ -75,6 +84,8 @@ public class Controller {
 
 
     }
+
+
 
     @GetMapping("/getAllByAgentId")
     public List getOrderByAgentId(@RequestParam String agentId){
