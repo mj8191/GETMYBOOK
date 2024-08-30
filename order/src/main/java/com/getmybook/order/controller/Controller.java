@@ -15,12 +15,10 @@ public class Controller {
     @Autowired
     private ItemRepo itemRepo;
     @PostMapping("/save")
-    public Order saveBook(@RequestBody CreateRequest createRequest){
+    public OrderResponse saveBook(@RequestBody CreateRequest createRequest){
         System.out.println(createRequest);
         Order order = new Order();
-        order.setSellerId(createRequest.getSellerId());
         order.setBuyerId(createRequest.getBuyerId());
-        order.setItems(createRequest.getItems());
         order.setAgentId("mj.eng8191@gmail.com");
         order.setStatus("ordered");
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
@@ -35,7 +33,10 @@ public class Controller {
                 );
         order1.setItems(items);
         System.out.println(order1);
-        return order1;
+        OrderResponse orderResponse = new OrderResponse();
+        orderResponse.setOrder(order1);
+        orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+        return orderResponse;
 
     }
     @GetMapping("/updateStatus")
@@ -44,7 +45,7 @@ public class Controller {
         Order order2 = new Order();
         if(order.isPresent()){
             order2.setOrderId(id);
-            order2.setSellerId(order.get().getSellerId());
+
             order2.setBuyerId(order.get().getBuyerId());
             order2.setItems(order.get().getItems());
             order2.setAgentId("mj.eng8191@gmail.com");
@@ -60,7 +61,15 @@ public class Controller {
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        return list;
+        List<OrderResponse> orderResponses = new ArrayList<>();
+        list.forEach(order->{
+            OrderResponse orderResponse= new OrderResponse();
+            orderResponse.setOrder(order);
+            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponses.add(orderResponse);
+
+        });
+        return orderResponses;
 
 
     }
@@ -70,7 +79,15 @@ public class Controller {
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        return list;
+        List<OrderResponse> orderResponses = new ArrayList<>();
+        list.forEach(order->{
+            OrderResponse orderResponse= new OrderResponse();
+            orderResponse.setOrder(order);
+            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponses.add(orderResponse);
+
+        });
+        return orderResponses;
 
 
     }
@@ -80,7 +97,15 @@ public class Controller {
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        return list;
+        List<OrderResponse> orderResponses = new ArrayList<>();
+        list.forEach(order->{
+            OrderResponse orderResponse= new OrderResponse();
+            orderResponse.setOrder(order);
+            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponses.add(orderResponse);
+
+        });
+        return orderResponses;
 
 
     }
@@ -93,7 +118,15 @@ public class Controller {
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        return list;
+        List<OrderResponse> orderResponses = new ArrayList<>();
+        list.forEach(order->{
+            OrderResponse orderResponse= new OrderResponse();
+            orderResponse.setOrder(order);
+            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponses.add(orderResponse);
+
+        });
+        return orderResponses;
 
 
     }
