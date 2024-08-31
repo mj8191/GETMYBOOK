@@ -86,7 +86,7 @@ public class Controller {
 
     @GetMapping("/getAllBook")
     public List getAllBook(){
-        List<Book> list = bookRepository.getAllByStatus("Published");
+        List<Book> list = bookRepository.findAll();
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
@@ -96,8 +96,8 @@ public class Controller {
     }
 
     @GetMapping("getAllByStatus")
-    public List getAllByStatus(@RequestParam String status){
-        List<Book> list = bookRepository.getAllByStatus(status);
+    public List getAllByStatus(){
+        List<Book> list = bookRepository.getAllByStatus("Published");
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
