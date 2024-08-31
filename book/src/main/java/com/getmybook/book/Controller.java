@@ -86,7 +86,7 @@ public class Controller {
 
     @GetMapping("/getAllBook")
     public List getAllBook(){
-        List<Book> list = bookRepository.findAll();
+        List<Book> list = bookRepository.getAllByStatus("Published");
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
