@@ -1,13 +1,14 @@
 package com.getmybook.order;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+
+@Getter
 @Table(name = "Item")
 public class Item {
     @Id

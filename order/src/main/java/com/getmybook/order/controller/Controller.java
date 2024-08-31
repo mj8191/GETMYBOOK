@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/order")
@@ -23,18 +24,21 @@ public class Controller {
         order.setStatus("ordered");
         order.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Order order1 = orderRepository.save(order);
+        Set<Item> itemSet = new HashSet<>();
         Set<Item> items = createRequest.getItems();
         items.forEach(item ->
                 {
                     item.setOrder(order1);
-                    itemRepo.save(item);
+                   itemSet.add(itemRepo.save(item));
                 }
 
                 );
         order1.setItems(items);
         System.out.println(order1);
         OrderResponse orderResponse = new OrderResponse();
-        orderResponse.setOrder(order1);
+        orderResponse.setItems(items);
+        orderResponse.setId(order1.getOrderId());
+        orderResponse.setStatus(order1.getStatus());
         orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
         return orderResponse;
 
@@ -64,7 +68,8 @@ public class Controller {
         List<OrderResponse> orderResponses = new ArrayList<>();
         list.forEach(order->{
             OrderResponse orderResponse= new OrderResponse();
-            orderResponse.setOrder(order);
+            orderResponse.setId(order.getOrderId());
+            orderResponse.setItems(order.getItems());
             orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
             orderResponses.add(orderResponse);
 
@@ -75,16 +80,21 @@ public class Controller {
     }
     @GetMapping("/getAllBySellerId")
     public List getOrderBySellerId(@RequestParam String sellerId){
-        List<Order> list = orderRepository.getAllBySellerId(sellerId);
+        List<Order> list = orderRepository.findAll();
         if(list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
         List<OrderResponse> orderResponses = new ArrayList<>();
         list.forEach(order->{
+            Set<Item> itemSet = order.getItems().stream().filter(i->i.getSellerId().equals(sellerId)).collect(Collectors.toSet());
+            if(!itemSet.isEmpty()){
             OrderResponse orderResponse= new OrderResponse();
-            orderResponse.setOrder(order);
+            orderResponse.setId(order.getOrderId());
+            orderResponse.setStatus(order.getStatus());
+            orderResponse.setItems(itemSet);
             orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
             orderResponses.add(orderResponse);
+            }
 
         });
         return orderResponses;
@@ -100,7 +110,9 @@ public class Controller {
         List<OrderResponse> orderResponses = new ArrayList<>();
         list.forEach(order->{
             OrderResponse orderResponse= new OrderResponse();
-            orderResponse.setOrder(order);
+            orderResponse.setId(order.getOrderId());
+            orderResponse.setStatus(order.getStatus());
+            orderResponse.setItems(order.getItems());
             orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
             orderResponses.add(orderResponse);
 
@@ -121,7 +133,8 @@ public class Controller {
         List<OrderResponse> orderResponses = new ArrayList<>();
         list.forEach(order->{
             OrderResponse orderResponse= new OrderResponse();
-            orderResponse.setOrder(order);
+            orderResponse.setId(order.getOrderId());
+            orderResponse.setItems(order.getItems());
             orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
             orderResponses.add(orderResponse);
 

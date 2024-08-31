@@ -1,13 +1,13 @@
 package com.getmybook.order;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Setter
+@ToString
+@Getter
 public class CreateRequest{
     private  String sellerId;
     private String buyerId;

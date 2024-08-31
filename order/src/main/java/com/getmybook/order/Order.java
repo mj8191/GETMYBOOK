@@ -1,16 +1,17 @@
 package com.getmybook.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+
+@Getter
 @Table(name = "Orders")
 public class Order{
     @Id
@@ -20,6 +21,8 @@ public class Order{
     private  String sellerId;
     private String buyerId;
     private String agentId;
+
+    @JsonIgnore
     @OneToMany
     @JoinColumn(name = "order_id")
     private Set<Item> items;
