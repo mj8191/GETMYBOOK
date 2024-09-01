@@ -29,12 +29,14 @@ public class Controller {
         book.setStatus(createRequest.getStatus());
         book.setBookName(createRequest.getBookName());
         book.setAuthor(createRequest.getAuthor());
-        book.setRentPrice(createRequest.getRentPrice());
         book.setSellerId(createRequest.getSellerId());
         book.setImage(createRequest.getImage());
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         if(!createRequest.getSellPrice().isEmpty()){
             book.setSellPrice(createRequest.getSellPrice());
+        }
+        if(!createRequest.getRentPrice().isEmpty()){
+            book.setRentPrice(createRequest.getRentPrice());
         }
         return bookRepository.save(book);
 
@@ -133,8 +135,12 @@ public class Controller {
         book1.setAuthor(book.get().getAuthor());
         book1.setImage(book.get().getImage());
         book1.setId(book.get().getId());
-        book1.setRentPrice(book.get().getRentPrice());
-        book1.setSellerId(book.get().getSellerId());
+        if(!book.get().getRentPrice().isEmpty()) {
+            book1.setRentPrice(book.get().getRentPrice());
+        }
+        if(!book.get().getSellPrice().isEmpty()) {
+            book1.setSellerId(book.get().getSellerId());
+        }
         book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Model model = new Model();
         model.setImage(book.get().getImage());
