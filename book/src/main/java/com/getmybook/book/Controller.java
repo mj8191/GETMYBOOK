@@ -50,6 +50,20 @@ public class Controller {
         return modelRepo.save(model);
 
     }
+    @GetMapping("saveImage")
+    public void saveImage(@RequestParam String image,@RequestParam Integer id) {
+
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isPresent()) {
+
+
+        book.get().setImage(image);
+        bookRepository.save(book.get());
+    }
+
+
+
+    }
     @GetMapping("/getAllBySellerId")
     public List getBookBySellerId(@RequestParam String sellerId){
          List<Book> list = bookRepository.getAllBySellerId(sellerId);
@@ -122,6 +136,11 @@ public class Controller {
         book1.setRentPrice(book.get().getRentPrice());
         book1.setSellerId(book.get().getSellerId());
         book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+        Model model = new Model();
+        model.setImage(book.get().getImage());
+        model.setTitle(book.get().getBookName());
+        model.setAuthor(book.get().getAuthor());
+           modelRepo.save(model);
            return bookRepository.save(book1);
         }
     return book1;
