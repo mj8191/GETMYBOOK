@@ -15,4 +15,5 @@ public class CreateRequest{
     private String status;
 
     private String rentPrice;
+    private String sellPrice;
 }

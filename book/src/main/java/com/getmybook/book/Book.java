@@ -22,6 +22,7 @@ public class Book {
     private  String status;
 
     private String rentPrice;
+    private String sellPrice;
     private String updatedOn;
 
 }

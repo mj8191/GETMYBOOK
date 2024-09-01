@@ -33,6 +33,9 @@ public class Controller {
         book.setSellerId(createRequest.getSellerId());
         book.setImage(createRequest.getImage());
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+        if(!createRequest.getSellPrice().isEmpty()){
+            book.setSellPrice(createRequest.getSellPrice());
+        }
         return bookRepository.save(book);
 
     }
