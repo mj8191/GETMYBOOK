@@ -22,4 +22,5 @@ public class Item {
     private Order order;
     private String bookName;
     private String sellerId;
+    private Integer sellPrice;
 }

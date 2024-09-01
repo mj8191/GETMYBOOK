@@ -39,7 +39,14 @@ public class Controller {
         orderResponse.setItems(items);
         orderResponse.setId(order1.getOrderId());
         orderResponse.setStatus(order1.getStatus());
-        orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+        orderResponse.setPrice(order.getItems().stream().mapToInt(i->{
+            if(i.getSellPrice()!=null) {
+                return i.getSellPrice();
+            }
+            return i.getRentPrice();
+
+
+        }).sum());
         return orderResponse;
 
     }
@@ -70,7 +77,14 @@ public class Controller {
             OrderResponse orderResponse= new OrderResponse();
             orderResponse.setId(order.getOrderId());
             orderResponse.setItems(order.getItems());
-            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponse.setPrice(order.getItems().stream().mapToInt(i->{
+                if(i.getSellPrice()!=null) {
+                    return i.getSellPrice();
+                }
+                return i.getRentPrice();
+
+
+            }).sum());
             orderResponses.add(orderResponse);
 
         });
@@ -92,7 +106,14 @@ public class Controller {
             orderResponse.setId(order.getOrderId());
             orderResponse.setStatus(order.getStatus());
             orderResponse.setItems(itemSet);
-            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponse.setPrice(order.getItems().stream().mapToInt(i->{
+                if(i.getSellPrice()!=null) {
+                    return i.getSellPrice();
+                }
+                    return i.getRentPrice();
+
+
+            }).sum());
             orderResponses.add(orderResponse);
             }
 
@@ -113,7 +134,14 @@ public class Controller {
             orderResponse.setId(order.getOrderId());
             orderResponse.setStatus(order.getStatus());
             orderResponse.setItems(order.getItems());
-            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponse.setPrice(order.getItems().stream().mapToInt(i->{
+                if(i.getSellPrice()!=null) {
+                    return i.getSellPrice();
+                }
+                return i.getRentPrice();
+
+
+            }).sum());
             orderResponses.add(orderResponse);
 
         });
@@ -135,7 +163,14 @@ public class Controller {
             OrderResponse orderResponse= new OrderResponse();
             orderResponse.setId(order.getOrderId());
             orderResponse.setItems(order.getItems());
-            orderResponse.setPrice(order.getItems().stream().mapToInt(Item::getRentPrice).sum());
+            orderResponse.setPrice(order.getItems().stream().mapToInt(i->{
+                if(i.getSellPrice()!=null) {
+                    return i.getSellPrice();
+                }
+                return i.getRentPrice();
+
+
+            }).sum());
             orderResponses.add(orderResponse);
 
         });
