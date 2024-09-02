@@ -13,7 +13,7 @@ public class CreateRequest{
     private String author;
     private  String image;
     private String status;
-
+    private String monthlyRentPrice;
     private String rentPrice;
     private String sellPrice;
 }

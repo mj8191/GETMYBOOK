@@ -20,7 +20,7 @@ public class Book {
     private String author;
     private String image;
     private  String status;
-
+    private String monthlyRentPrice;
     private String rentPrice;
     private String sellPrice;
     private String updatedOn;

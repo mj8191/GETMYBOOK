@@ -35,6 +35,9 @@ public class Controller {
         if(!createRequest.getSellPrice().isEmpty()){
             book.setSellPrice(createRequest.getSellPrice());
         }
+        if(!createRequest.getMonthlyRentPrice().isEmpty()){
+            book.setMonthlyRentPrice(createRequest.getMonthlyRentPrice());
+        }
         if(!createRequest.getRentPrice().isEmpty()){
             book.setRentPrice(createRequest.getRentPrice());
         }
@@ -135,10 +138,13 @@ public class Controller {
         book1.setAuthor(book.get().getAuthor());
         book1.setImage(book.get().getImage());
         book1.setId(book.get().getId());
-        if(!book.get().getRentPrice().isEmpty()) {
+        if(book.get().getRentPrice()!=null) {
             book1.setRentPrice(book.get().getRentPrice());
         }
-        if(!book.get().getSellPrice().isEmpty()) {
+           if(book.get().getMonthlyRentPrice()!=null) {
+               book1.setMonthlyRentPrice(book.get().getMonthlyRentPrice());
+           }
+        if(book.get().getSellPrice()!=null) {
             book1.setSellerId(book.get().getSellerId());
         }
         book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
