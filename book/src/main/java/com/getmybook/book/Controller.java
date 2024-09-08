@@ -73,6 +73,7 @@ public class Controller {
     } else {
             Book book1 = new Book();
             book1.setImage(image);
+            book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
             book1.setId(id);
         }
 
