@@ -62,7 +62,7 @@ public class Controller {
 
     }
     @GetMapping("saveImage")
-    public void saveImage(@RequestParam String image,@RequestParam Integer id) {
+    public void saveImage(@RequestParam String image,@RequestParam String id) {
 
         Optional<Book> book = bookRepository.findById(id);
         if (book.isPresent()) {

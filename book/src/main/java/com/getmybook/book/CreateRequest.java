@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CreateRequest{
-    private Integer id;
+    private String id;
     private  String sellerId;
     private String bookName;
     private String author;
