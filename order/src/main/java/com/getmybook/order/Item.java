@@ -17,6 +17,8 @@ public class Item {
     private Integer Id;
     private String image;
     private Integer rentPrice;
+    private String rentType;
+    private Integer period;
     @ManyToOne()
     @JoinColumn(name = "order_id")
     private Order order;
