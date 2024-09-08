@@ -15,6 +15,7 @@ public class Controller {
     private BookRepository bookRepository;
     @PostMapping("/save")
     public Book saveBook(@RequestBody CreateRequest createRequest){
+        Optional<Book> book2 = bookRepository.findById(createRequest.getId());
         Optional<Model> model = modelRepo.findByTitleIgnoreCaseAndAuthorIgnoreCaseAndImage(createRequest.getBookName(),createRequest.getAuthor(),createRequest.getImage());
         if(model.isPresent()){
                 createRequest.setStatus("Published");
@@ -30,7 +31,12 @@ public class Controller {
         book.setBookName(createRequest.getBookName());
         book.setAuthor(createRequest.getAuthor());
         book.setSellerId(createRequest.getSellerId());
-        book.setImage(createRequest.getImage());
+        if(book2.isEmpty()){
+            book.setImage(createRequest.getImage());
+
+        } else {
+            book.setImage(book2.get().getImage());
+        }
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         if(!createRequest.getSellPrice().isEmpty()){
             book.setSellPrice(createRequest.getSellPrice());
@@ -64,7 +70,11 @@ public class Controller {
 
         book.get().setImage(image);
         bookRepository.save(book.get());
-    }
+    } else {
+            Book book1 = new Book();
+            book1.setImage(image);
+            book1.setId(id);
+        }
 
 
 
