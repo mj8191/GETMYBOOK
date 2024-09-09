@@ -78,6 +78,7 @@ public class Controller {
             book2.setAuthor(book.get().getAuthor());
             book2.setImage(image);
             book2.setId(book.get().getId());
+            book2.setSellerId(book.get().getSellerId());
             if(book.get().getRentPrice()!=null) {
                 book2.setRentPrice(book.get().getRentPrice());
             }
