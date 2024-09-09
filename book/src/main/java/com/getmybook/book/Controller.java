@@ -27,6 +27,8 @@ public class Controller {
         }
 
         Book book = new Book();
+        book.setId(createRequest.getId());
+        System.out.println("id   " + createRequest.getId());
         book.setStatus(createRequest.getStatus());
         book.setBookName(createRequest.getBookName());
         book.setAuthor(createRequest.getAuthor());
@@ -35,6 +37,7 @@ public class Controller {
             book.setImage(createRequest.getImage());
 
         } else {
+            System.out.println("id3   " +book2.get().getId());
             book.setImage(book2.get().getImage());
         }
         book.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
@@ -47,7 +50,9 @@ public class Controller {
         if(!createRequest.getRentPrice().isEmpty()){
             book.setRentPrice(createRequest.getRentPrice());
         }
-        return bookRepository.save(book);
+        Book book3 = bookRepository.save(book);
+        System.out.println("id2  " +book3.getId());
+        return book3;
 
     }
 
@@ -63,18 +68,19 @@ public class Controller {
     }
     @GetMapping("saveImage")
     public void saveImage(@RequestParam String image,@RequestParam String id) {
-
+        System.out.println("id5 " +id);
         Optional<Book> book = bookRepository.findById(id);
         if (book.isPresent()) {
-
+            System.out.println("id6  " +book.get().getId());
 
         book.get().setImage(image);
-        bookRepository.save(book.get());
+
     } else {
             Book book1 = new Book();
             book1.setImage(image);
             book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
             book1.setId(id);
+            bookRepository.save(book1);
         }
 
 
