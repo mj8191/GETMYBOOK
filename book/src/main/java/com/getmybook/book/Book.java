@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "book")
 public class Book {
     @Id
-    @UuidGenerator
     @Column(name = "id")
     private String id;
     private  String sellerId;

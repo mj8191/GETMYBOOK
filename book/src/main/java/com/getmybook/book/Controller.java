@@ -70,17 +70,31 @@ public class Controller {
     public void saveImage(@RequestParam String image,@RequestParam String id) {
         System.out.println("id5 " +id);
         Optional<Book> book = bookRepository.findById(id);
+        Book book2 = new Book();
         if (book.isPresent()) {
-            System.out.println("id6  " +book.get().getId());
 
-        book.get().setImage(image);
+            book2.setStatus(book.get().getStatus());
+            book2.setBookName(book.get().getBookName());
+            book2.setAuthor(book.get().getAuthor());
+            book2.setImage(image);
+            book2.setId(book.get().getId());
+            if(book.get().getRentPrice()!=null) {
+                book2.setRentPrice(book.get().getRentPrice());
+            }
+            if(book.get().getMonthlyRentPrice()!=null) {
+                book2.setMonthlyRentPrice(book.get().getMonthlyRentPrice());
+            }
+            if(book.get().getSellPrice()!=null) {
+                book2.setSellerId(book.get().getSellerId());
+            }
+            book2.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+            bookRepository.save(book2);
 
     } else {
-            Book book1 = new Book();
-            book1.setImage(image);
-            book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
-            book1.setId(id);
-            bookRepository.save(book1);
+            book2.setImage(image);
+            book2.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
+            book2.setId(id);
+            bookRepository.save(book2);
         }
 
 
