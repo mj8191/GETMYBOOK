@@ -178,7 +178,7 @@ public class Controller {
                book1.setMonthlyRentPrice(book.get().getMonthlyRentPrice());
            }
         if(book.get().getSellPrice()!=null) {
-            book1.setSellerId(book.get().getSellerId());
+            book1.setSellPrice(book.get().getSellPrice());
         }
         book1.setUpdatedOn(String.valueOf(Instant.now().toEpochMilli()));
         Model model = new Model();
